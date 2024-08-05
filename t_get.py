@@ -26,7 +26,7 @@ def get_data():
 
         non_stable_coins = [coin for coin in coins if coin['symbol'] not in ['USDT', 'USDC','FDUSD', 'BUSD', 'DAI']]
 
-        top_liquidity_coins = sorted(non_stable_coins, key=lambda x: x['quote']['USD']['volume_24h'], reverse=True)[:30]
+        top_liquidity_coins = sorted(non_stable_coins, key=lambda x: x['quote']['USD']['volume_24h'], reverse=True)[:50]
 
         total_market_cap = sum(coin['quote']['USD']['market_cap'] for coin in top_liquidity_coins)
 
@@ -35,7 +35,7 @@ def get_data():
         index_value = sum(coin['quote']['USD']['price'] * weight for coin, weight in zip(top_liquidity_coins, weights.values()))
 
         print(f"The index value based on the top 30 non-stable coins by 24h liquidity is: {round(index_value, 2)}")
-        # result = {"message": f"The index value based on the top 30 non-stable coins by 24h liquidity is: {round(index_value, 2)}"}
+        # result = {"message": f"The index value based on the top 50 non-stable coins by 24h liquidity is: {round(index_value, 2)}"}
         # return result
         # return round(index_value, 2)
 
