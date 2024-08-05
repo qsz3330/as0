@@ -1,8 +1,8 @@
 from requests import Request, Session
 from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
 import json
-from flask import Flask, jsonify
-app = Flask(__name__)
+# from flask import Flask, jsonify
+# app = Flask(__name__)
 
 
 def get_data():
@@ -42,11 +42,12 @@ def get_data():
     except (ConnectionError, Timeout, TooManyRedirects) as e:
         print(e)
 
-@app.route('/value', methods=['GET'])
-def my_endpoint():
-    result = get_data()
-    return jsonify(result)
+# @app.route('/value', methods=['GET'])
+# def my_endpoint():
+#     result = get_data()
+#     return jsonify(result)
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=80)
+    get_data()
+    # app.run(host='0.0.0.0', port=80)
 
