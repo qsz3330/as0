@@ -34,9 +34,9 @@ def get_data():
 
         index_value = sum(coin['quote']['USD']['price'] * weight for coin, weight in zip(top_liquidity_coins, weights.values()))
 
-        # print(f"The index value based on the top 30 non-stable coins by 24h liquidity is: {round(index_value, 2)}")
-        result = {"message": f"The index value based on the top 30 non-stable coins by 24h liquidity is: {round(index_value, 2)}"}
-        return result
+        print(f"The index value based on the top 30 non-stable coins by 24h liquidity is: {round(index_value, 2)}")
+        # result = {"message": f"The index value based on the top 30 non-stable coins by 24h liquidity is: {round(index_value, 2)}"}
+        # return result
         # return round(index_value, 2)
 
     except (ConnectionError, Timeout, TooManyRedirects) as e:
