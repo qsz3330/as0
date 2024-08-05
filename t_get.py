@@ -2,6 +2,7 @@ from requests import Request, Session
 from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
 import json
 from flask import Flask, jsonify
+app = Flask(__name__)
 
 
 def get_data():
@@ -34,16 +35,18 @@ def get_data():
         index_value = sum(coin['quote']['USD']['price'] * weight for coin, weight in zip(top_liquidity_coins, weights.values()))
 
         # print(f"The index value based on the top 30 non-stable coins by 24h liquidity is: {round(index_value, 2)}")
-        return round(index_value, 2)
+        result = {"message": f"The index value based on the top 30 non-stable coins by 24h liquidity is: {round(index_value, 2)}"}
+        return result
+        # return round(index_value, 2)
 
     except (ConnectionError, Timeout, TooManyRedirects) as e:
         print(e)
 
-@app.route('/my-endpoint', methods=['GET'])
+@app.route('/value', methods=['GET'])
 def my_endpoint():
-    result = my_function()
+    result = get_data()
     return jsonify(result)
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=80)
 
